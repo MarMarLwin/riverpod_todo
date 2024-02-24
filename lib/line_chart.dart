@@ -6,17 +6,12 @@ class LineChartBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LineChart(mainData());
-  }
-
-  Widget bottomTitleWidgets(double value, TitleMeta meta) {
-    const style = TextStyle(
-      fontSize: 10,
-      color: Colors.black54,
-    );
-    return SideTitleWidget(
-      axisSide: meta.axisSide,
-      child: Text(meta.formattedValue, style: style),
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: SizedBox(
+          width: MediaQuery.sizeOf(context).width,
+          height: 200,
+          child: LineChart(mainData())),
     );
   }
 
@@ -34,6 +29,11 @@ class LineChartBar extends StatelessWidget {
             x2: 9,
             color: Colors.blue.withOpacity(0.2),
           ),
+          VerticalRangeAnnotation(
+            x1: 11,
+            x2: 16,
+            color: Colors.grey.withOpacity(0.2),
+          ),
         ],
         // horizontalRangeAnnotations: [
         //   HorizontalRangeAnnotation(
@@ -44,52 +44,20 @@ class LineChartBar extends StatelessWidget {
         // ],
       ),
       // uncomment to see ExtraLines with RangeAnnotations
-      extraLinesData: const ExtraLinesData(
-//         extraLinesOnTop: true,
-          // horizontalLines: [
-          //   HorizontalLine(
-          //     y: 5,
-          //     color: Colors.green,
-          //     strokeWidth: 2,
-          //     dashArray: [5, 10],
-          //     label: HorizontalLineLabel(
-          //       show: true,
-          //       alignment: Alignment.topRight,
-          //       padding: const EdgeInsets.only(right: 5, bottom: 5),
-          //       style: const TextStyle(
-          //         fontSize: 9,
-          //         fontWeight: FontWeight.bold,
-          //       ),
-          //       labelResolver: (line) => 'H: ${line.y}',
-          //     ),
-          //   ),
-          // ],
-          // verticalLines: [
-          //   VerticalLine(
-          //     x: 5.7,
-          //     color: Colors.blue,
-          //     strokeWidth: 2,
-          //     dashArray: [5, 10],
-          //     label: VerticalLineLabel(
-          //       show: true,
-          //       alignment: Alignment.topRight,
-          //       padding: const EdgeInsets.only(left: 10, top: 5),
-          //       style: const TextStyle(
-          //         fontSize: 9,
-          //         fontWeight: FontWeight.bold,
-          //       ),
-          //       labelResolver: (line) => 'V: ${line.x}',
-          //     ),
-          //   ),
-          // ],
-          ),
-      gridData: const FlGridData(
-        show: false,
-        drawVerticalLine: false,
-        drawHorizontalLine: false,
-        verticalInterval: 1,
-      ),
-      titlesData: FlTitlesData(
+
+      gridData: FlGridData(
+          show: true,
+          drawVerticalLine: true,
+          drawHorizontalLine: false,
+          verticalInterval: 1,
+          getDrawingVerticalLine: (value) {
+            return const FlLine(
+              color: Colors.blueGrey,
+              strokeWidth: 0.4,
+              dashArray: [2, 4],
+            );
+          }),
+      titlesData: const FlTitlesData(
         show: true,
         bottomTitles: AxisTitles(
           sideTitles: SideTitles(
@@ -99,14 +67,14 @@ class LineChartBar extends StatelessWidget {
             interval: 4,
           ),
         ),
-        leftTitles: const AxisTitles(
+        leftTitles: AxisTitles(
           drawBelowEverything: true,
           sideTitles: SideTitles(),
         ),
-        rightTitles: const AxisTitles(
+        rightTitles: AxisTitles(
           sideTitles: SideTitles(showTitles: false),
         ),
-        topTitles: const AxisTitles(
+        topTitles: AxisTitles(
           sideTitles: SideTitles(showTitles: false),
         ),
       ),
@@ -128,6 +96,7 @@ class LineChartBar extends StatelessWidget {
           }).toList();
         },
         touchTooltipData: const LineTouchTooltipData(
+          maxContentWidth: 500,
           tooltipBgColor: Colors.blue,
         ),
       ),
@@ -138,7 +107,7 @@ class LineChartBar extends StatelessWidget {
         ),
       ),
       minX: 0,
-      maxX: 20,
+      maxX: 25,
       minY: 0,
       maxY: 6,
       lineBarsData: [
@@ -168,4 +137,15 @@ class LineChartBar extends StatelessWidget {
       ],
     );
   }
+}
+
+Widget bottomTitleWidgets(double value, TitleMeta meta) {
+  const style = TextStyle(
+    fontSize: 10,
+    color: Colors.black54,
+  );
+  return SideTitleWidget(
+    axisSide: meta.axisSide,
+    child: Text(meta.formattedValue, style: style),
+  );
 }

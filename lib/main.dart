@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_todo/bar_chart.dart';
 import 'package:riverpod_todo/line_chart.dart';
+import 'package:riverpod_todo/line_chart_scrollable.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -90,7 +92,7 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
-      body: const Center(child: SizedBox(height: 100, child: LineChartBar())),
+      body: Center(child: SizedBox(height: 100, child: BarChartSample4())),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
