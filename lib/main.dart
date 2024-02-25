@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_todo/bar_chart.dart';
 import 'package:riverpod_todo/line_chart.dart';
 import 'package:riverpod_todo/line_chart_scrollable.dart';
+import 'package:riverpod_todo/responsive_layout/layout_builder.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -92,7 +93,8 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
-      body: Center(child: SizedBox(height: 100, child: BarChartSample4())),
+      // body: Center(child: SizedBox(height: 100, child: BarChartSample4())),
+      body: const ResponsiveLayoutBuilder(),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
