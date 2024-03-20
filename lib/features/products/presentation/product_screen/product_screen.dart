@@ -9,6 +9,7 @@ import 'package:riverpod_todo/constants/app_sizes.dart';
 import 'package:riverpod_todo/features/products/data/fake_product_repository.dart';
 import 'package:riverpod_todo/features/products/domain/product.dart';
 import 'package:riverpod_todo/features/products/presentation/home_app_bar/home_app_bar.dart';
+import 'package:riverpod_todo/features/products/presentation/product_screen/product_average_rating.dart';
 import 'package:riverpod_todo/localization/string_hardcoded.dart';
 import 'package:riverpod_todo/utils/currency_formatter.dart';
 
@@ -58,6 +59,8 @@ class ProductDetails extends ConsumerWidget {
           child: Padding(
             padding: const EdgeInsets.all(Sizes.p16),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   product.title,
@@ -66,20 +69,25 @@ class ProductDetails extends ConsumerWidget {
                 gapH8,
                 Text(
                   product.description,
-                  style: Theme.of(context).textTheme.bodyMedium,
                 ),
+                if (product.numRatings >= 1) ...[
+                  gapH48,
+                  ProductAverageRating(product: product)
+                ],
                 gapH8,
                 const Divider(),
                 gapH8,
                 Text(
                   priceFormatted,
-                  style: Theme.of(context).textTheme.bodyLarge,
+                  style: Theme.of(context).textTheme.headlineSmall,
                 ),
                 gapH8,
                 const Divider(),
                 gapH8,
                 Row(
                   children: [
+                    const Text('Quantity'),
+                    const Spacer(),
                     Text(
                       product.availableQuantity.toString(),
                       style: Theme.of(context).textTheme.bodySmall,

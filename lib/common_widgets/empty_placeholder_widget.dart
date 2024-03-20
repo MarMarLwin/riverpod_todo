@@ -15,6 +15,7 @@ class EmptyPlaceholderWidget extends StatelessWidget {
         Sizes.p16,
       ),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(message, style: Theme.of(context).textTheme.bodyLarge),
           gapH8,

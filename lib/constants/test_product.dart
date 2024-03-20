@@ -8,6 +8,7 @@ const kTestProducts = [
     title: 'Bruschetta plate',
     description: 'Lorem ipsum',
     price: 15,
+    numRatings: 3,
     availableQuantity: 5,
   ),
   Product(

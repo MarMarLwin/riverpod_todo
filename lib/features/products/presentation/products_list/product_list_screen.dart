@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:riverpod_todo/common_widgets/responsive_center.dart';
 import 'package:riverpod_todo/features/products/presentation/home_app_bar/home_app_bar.dart';
 import 'package:riverpod_todo/features/products/presentation/products_list/product_grid.dart';
-import 'package:riverpod_todo/localization/string_hardcoded.dart';
 
 class ProductListScreen extends StatefulWidget {
   const ProductListScreen({super.key});
@@ -37,10 +36,6 @@ class _ProductListScreenState extends State<ProductListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //     title: Text(
-      //   'Product List'.hardcoded,
-      // )),
       appBar: const HomeAppBar(),
       body: CustomScrollView(
         controller: _scrollController,

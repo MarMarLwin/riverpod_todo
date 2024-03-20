@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
-        routerConfig: goRouter);
+        routerConfig: shellRoute);
   }
 }
 
